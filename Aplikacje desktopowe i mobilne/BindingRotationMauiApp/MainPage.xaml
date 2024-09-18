@@ -16,7 +16,7 @@
                 Minimum ="0"
                 Maximum = "360"
                 MinimumTrackColor="Red"
-                MaximumTrackColor="Green"
+                MaximumTrackColor="Yellow"
                 ThumbColor="Black"
                 x:Name="levelSlider"
                 ValueChanged="levelSlider_ValueChanged"
