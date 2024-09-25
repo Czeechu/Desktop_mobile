@@ -21,12 +21,39 @@ namespace ShowCollectionMauiApp
 
         public string NewFruitName { get; set; }
 
+
+        public ObservableCollection<Car> CarsCollection { get; set; }
+
+        private Car selectedCar;
+
+        public Car SelectedCar
+        {
+            get { return selectedCar; }
+            set { selectedCar = value; OnPropertyChanged();  }
+        }
+
+
         public MainPage()
         {
             FruitsCollection = new ObservableCollection<string>();
             FruitsCollection.Add("Banan");
             FruitsCollection.Add("Mandarynka");
             FruitsCollection.Add("Jabłko");
+
+            CarsCollection = new ObservableCollection<Car>()
+            {
+                new Car()
+                {
+                    Name = "Opel",
+                    Description = "Samochód dla mnie"
+                },
+                new Car()
+                {
+                    Name = "Peugeot",
+                    Description = "Nie wszysycy lubią literę F"
+                }
+            };
+            SelectedCar = CarsCollection.First();
 
             InitializeComponent();
         }
