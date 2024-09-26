@@ -1,41 +1,100 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace MeasurementConverterMauiApp
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
+        private string fromUnit;
+        private string toUnit;
+        private double inputValue;
+        private string result;
 
-        public List<string> UnitsCollection { get; set; }
-
-        private string firstUnits;
-
-        public string FirstUnits
+        public string FromUnit
         {
-            get { return firstUnits; }
+            get { return fromUnit; }
             set
             {
-                firstUnits = value;
-                OnPropertyChanged();
+                fromUnit = value;
+                OnPropertyChanged(nameof(FromUnit));
             }
         }
 
-        public string Calculate { get; set; }
+        public string ToUnit
+        {
+            get { return toUnit; }
+            set
+            {
+                toUnit = value;
+                OnPropertyChanged(nameof(ToUnit));
+            }
+        }
+
+        public double InputValue
+        {
+            get {return inputValue; }
+            set
+            {
+                inputValue = value;
+                OnPropertyChanged(nameof(InputValue));
+            }
+        }
+
+        public string Result
+        {
+            get {return result; } 
+            set
+            {
+                result = value;
+                OnPropertyChanged(nameof(Result));
+            }
+        }
 
         public MainPage()
         {
-            UnitsCollection = new List<string>();
-            UnitsCollection.Add("milimetry");
-            UnitsCollection.Add("centymetry");
-            UnitsCollection.Add("metry");
-            UnitsCollection.Add("kilometry");
-
+            
             InitializeComponent();
+            BindingContext = this;
+
+            FromUnit = "m";
+            ToUnit = "cm";
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void OnConvertButtonClicked(object sender, EventArgs e)
         {
-            UnitsCollection.Add(Calculate);
-        }
-    }
+            double convertedValue = 0;
 
+            if (FromUnit == "m")
+            {
+                if (ToUnit == "cm") convertedValue = InputValue * 100;
+                else if (ToUnit == "mm") convertedValue = InputValue * 1000;
+                else if (ToUnit == "km") convertedValue = InputValue / 1000;
+                else convertedValue = InputValue;
+            }
+            else if (FromUnit == "cm")
+            {
+                if (ToUnit == "m") convertedValue = InputValue / 100;
+                else if (ToUnit == "mm") convertedValue = InputValue * 10;
+                else if (ToUnit == "km") convertedValue = InputValue / 100000;
+                else convertedValue = InputValue;
+            }
+            else if (FromUnit == "mm")
+            {
+                if (ToUnit == "m") convertedValue = InputValue / 1000;
+                else if (ToUnit == "cm") convertedValue = InputValue / 10;
+                else if (ToUnit == "km") convertedValue = InputValue / 1000000;
+                else convertedValue = InputValue;
+            }
+            else if (FromUnit == "km")
+            {
+                if (ToUnit == "m") convertedValue = InputValue * 1000;
+                else if (ToUnit == "cm") convertedValue = InputValue * 100000;
+                else if (ToUnit == "mm") convertedValue = InputValue * 1000000;
+                else convertedValue = InputValue;
+            }
+
+            Result = $"{convertedValue} {ToUnit}";
+        }
+        
+    }
 }

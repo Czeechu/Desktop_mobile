@@ -4,32 +4,42 @@
              x:Class="MeasurementConverterMauiApp.MainPage"
              x:Name="thisPage"
              BindingContext="{Binding thisPage}">
-    
-    
-    <StackLayout>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
 
-            <StackLayout Margin="50, 0, 50, 0">
-                <Label Text="Masa źródłowa"/>
-                <Picker ItemsSource="{Binding UnitsCollection}"
-                        SelectedItem="{Binding FirstUnits}"/>
-            </StackLayout>
-
-            <StackLayout Margin="50, 0, 50, 0">
-                <Label Text="Masa docelowa"/>
-                <Picker/>
-            </StackLayout>
-            
+    <StackLayout Padding="20">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="30, 0, 30, 0">
+            <Label Text="Masa źródłowa:" VerticalOptions="Center"/>
+            <Picker SelectedItem="{Binding FromUnit}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mm</x:String>
+                        <x:String>cm</x:String>
+                        <x:String>m</x:String>
+                        <x:String>km</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
         </StackLayout>
-        <Label Text="Podaj miare: "/>
 
-        <Entry Text="{Binding Calculate}"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Label Text="Masa docelowa:" VerticalOptions="Center"/>
+            <Picker SelectedItem="{Binding ToUnit}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mm</x:String>
+                        <x:String>cm</x:String>
+                        <x:String>m</x:String>
+                        <x:String>km</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </StackLayout>
 
-        <Button Text="Oblicz"
-                HorizontalOptions="Center"
-                Margin="0, 10, 0, 10"
-                Clicked="Button_Clicked"/>
-        <Label/>
+        <Label Text="Podaj miarę:"/>
+        <Entry Text="{Binding InputValue}" Keyboard="Numeric"/>
+
+        <Button Text="Oblicz" Clicked="OnConvertButtonClicked"/>
+
+        <Label Text="Wynik:" FontSize="30"/>
+        <Label Text="{Binding Result}" FontSize="50" />
     </StackLayout>
-
 </ContentPage>
