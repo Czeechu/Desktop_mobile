@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionViewMauiApp.MainPage"
+             x:Name="thisPage"
+             BindingContext="{x:Reference thisPage}">
+
+    <StackLayout>
+        <Label Text="Kolekcja samochodów: "/>
+
+        <CollectionView ItemsSource="{Binding CarsCollection}" 
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="15" BackgroundColor="Grey" WidthRequest="200" Padding="10">
+                        <Label TextColor="Red" 
+                               FontSize="30" 
+                               Text="{Binding Name}"/>
+                        <Label Text="{Binding Description}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+    </StackLayout>
+    
+
+</ContentPage>
