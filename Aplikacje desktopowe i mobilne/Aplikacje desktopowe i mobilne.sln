@@ -57,7 +57,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowCollectionMauiApp", "Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeasurementConverterMauiApp", "MeasurementConverterMauiApp\MeasurementConverterMauiApp.csproj", "{8A82954E-0090-4A06-8434-2864377EE779}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionViewMauiApp", "CollectionViewMauiApp\CollectionViewMauiApp.csproj", "{DEC18F21-A9B4-44A5-A9DD-25129EBE280C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionViewMauiApp", "CollectionViewMauiApp\CollectionViewMauiApp.csproj", "{DEC18F21-A9B4-44A5-A9DD-25129EBE280C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmSimplecalculatorMauiApp", "MvvmSimplecalculatorMauiApp\MvvmSimplecalculatorMauiApp.csproj", "{715678E5-0507-4177-B00C-FF8D0DC9A5AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -274,6 +276,24 @@ Global
 		{DEC18F21-A9B4-44A5-A9DD-25129EBE280C}.Release|x86.ActiveCfg = Release|Any CPU
 		{DEC18F21-A9B4-44A5-A9DD-25129EBE280C}.Release|x86.Build.0 = Release|Any CPU
 		{DEC18F21-A9B4-44A5-A9DD-25129EBE280C}.Release|x86.Deploy.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x64.Build.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x86.Build.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x64.ActiveCfg = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x64.Build.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x64.Deploy.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x86.Build.0 = Release|Any CPU
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,6 +323,7 @@ Global
 		{C14F17D6-6438-4E08-82D5-6F839B85F620} = {C126F5D7-6F32-47CD-B9F7-E54CF4C15753}
 		{8A82954E-0090-4A06-8434-2864377EE779} = {C126F5D7-6F32-47CD-B9F7-E54CF4C15753}
 		{DEC18F21-A9B4-44A5-A9DD-25129EBE280C} = {C126F5D7-6F32-47CD-B9F7-E54CF4C15753}
+		{715678E5-0507-4177-B00C-FF8D0DC9A5AE} = {C126F5D7-6F32-47CD-B9F7-E54CF4C15753}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2E2DA32F-0FC6-4252-9FC0-CD664838E829}
