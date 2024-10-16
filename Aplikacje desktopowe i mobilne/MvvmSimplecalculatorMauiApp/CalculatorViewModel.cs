@@ -30,16 +30,21 @@ namespace MvvmSimpleCalculatorMauiApp
             set { returnMessageColor = value; OnPropertyChanged(); }
         }
 
-        private Command calculateCommnad;
+        private Command calculateCommand;
 
         public Command CalculateCommnad
         {
-            get { return calculateCommnad; }
-            set { calculateCommnad = value; }
+            get { return calculateCommand; }
+            set { calculateCommand = value; }
+        }
+
+        public CalculatorViewModel()
+        {
+            CalculateCommnad = new Command(Calculate);
         }
 
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void Calculate()
         {
             if (!int.TryParse(FirstNumber, out int firstNumber))
             {

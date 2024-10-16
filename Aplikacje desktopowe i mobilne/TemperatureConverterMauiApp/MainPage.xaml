@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemperatureConverterMauiApp.MainPage"
+             xmlns:local="clr-namespace:TemperatureConverterMauiApp">
+    
+    <ContentPage.BindingContext>
+        <local:TemperatureViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Spacing="10">
+        
+        <Label Text="Wybierz:"
+                   FontSize="20"
+                   FontFamily="Arial"
+                   FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+            <Picker ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}" WidthRequest="200" HeightRequest="20"/>
+            
+        <Label Text="Wprowadź:"
+           FontSize="20"
+           FontFamily="Arial"
+           FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+
+        <Entry Text="{Binding UnitConverter}" WidthRequest="200" HeightRequest="20"/>
+
+                <Button Text="Przelicz"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    FontSize="20"
+                    Background="blue"
+                    Command="{Binding CalculateCommand}"
+            />
+
+        <Label Text="{Binding UnitMessage}" HorizontalOptions="CenterAndExpand"/>
+
+    </VerticalStackLayout>
+</ContentPage>
