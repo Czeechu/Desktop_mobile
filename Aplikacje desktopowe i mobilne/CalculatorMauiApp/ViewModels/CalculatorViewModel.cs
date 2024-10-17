@@ -9,8 +9,6 @@ namespace CalculatorMauiApp.ViewModels
 {
     public class CalculatorViewModel : BindableObject
     {
-
-
         private int calculationResult;
 
 		public int CalculationResult
@@ -39,15 +37,19 @@ namespace CalculatorMauiApp.ViewModels
                         }
 						else
 						{
-							prevValue = CalculationResult;
+							if(!isOperationAction)
+							{
+                                prevValue = CalculationResult;
+                            }
+							
 							CalculationResult = digit;
 							isOperationAction = false;
-						}
+                            isOperationEquilAction = false;
+                        }
 					});
                 
 				return numericCommand;
 			}
-			
 		}
 
         private Command operationCommand;
@@ -69,7 +71,28 @@ namespace CalculatorMauiApp.ViewModels
 
                 return operationCommand;
             }
+        }
 
+        private Command operationEquilCommand;
+
+        public Command OperationEquilCommand
+        {
+            get
+            {
+                if (operationEquilCommand == null)
+                    operationEquilCommand = new Command<string>((operationSign) =>
+                    {
+                        if (isOperationAction)
+                            return;
+                        CalculationResult = Calculate(prevValue, CalculationResult, prevOperationSign);
+                        prevOperationSign = "*";
+						prevValue = 1;
+                        isOperationAction = true;
+                        isOperationEquilAction = true;
+                    });
+
+                return operationCommand;
+            }
         }
 
         private int Calculate(int firstValue, int secondValue, string OperationSign)
@@ -98,5 +121,6 @@ namespace CalculatorMauiApp.ViewModels
         private int prevValue = 1;
         private string prevOperationSign = "*";
 		private bool isOperationAction = false;
+		private bool isOperationEquilAction = false;
     }
 }
