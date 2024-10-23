@@ -13,6 +13,7 @@ namespace ConverterMauiApp.Converters
         {
             string grade = value as string;
             string returnValue = "Nieprawidłowa dana";
+ 
             if (grade != null)
             {
                 switch (grade)

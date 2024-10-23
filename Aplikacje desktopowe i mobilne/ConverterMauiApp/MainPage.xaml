@@ -6,14 +6,64 @@
 
     <ContentPage.Resources> <!-- zasoby-->
         <converters:GradeToTextGradeConverter x:Key="GradeToTextGradeConverter"/>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <converters:BoolToTextConverter x:Key="BoolToTextConverter"
+                                        TrueMessage="Dziękuję :)"
+                                        FalseMessage="Szkoda :("/>
+
+        <converters:BoolToTextConverter x:Key="AgeBoolToTextConverter"
+                                TrueMessage="Pełnoletni :)"
+                                FalseMessage="Niepełnoletni :("/>
     </ContentPage.Resources>
 
     <StackLayout>
         <Label Text="Wprowadź ocenę ucznia"/>
         <Entry x:Name="gradeEntry" />
         <Label Text="{Binding Text, Source={x:Reference gradeEntry}, Converter={x:StaticResource GradeToTextGradeConverter}}"/>
-        
-        
+
+        <Label Text="Zaznaczony - czerwony tekst, odznaczomy tekst - zielony "/>
+        <CheckBox x:Name="ColorCheckBox"/>
+        <Label Text="Ten kolor bedzie zmieniany"
+               TextColor="{Binding IsChecked,Source={x:Reference ColorCheckBox}, Converter={x:StaticResource BoolToColorConverter}}"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Subskrypcja"
+                   VerticalOptions="Center"/>
+            <CheckBox x:Name="SubscriptionCheckedBox"/>
+            <Label Text="{Binding IsChecked, Source={x:Reference SubscriptionCheckedBox}, Converter={x:StaticResource BoolToTextConverter}}"
+                   VerticalOptions="Center"
+                   TextColor="{Binding IsChecked,Source={x:Reference SubscriptionCheckedBox}, Converter={x:StaticResource BoolToColorConverter}}"/>
+            
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Zaznacz jeśli pełnoletni"
+           VerticalOptions="Center"/>
+            <CheckBox x:Name="AgeCheckBox"/>
+            <Label Text="{Binding IsChecked, Source={x:Reference AgeCheckBox}, Converter={x:StaticResource AgeBoolToTextConverter}}"
+           VerticalOptions="Center"
+           TextColor="{Binding IsChecked,Source={x:Reference AgeCheckBox}, Converter={x:StaticResource BoolToColorConverter}}"/>
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Zgoda rodzica"
+            VerticalOptions="Center"/>
+            <CheckBox x:Name="ParentCheckBox"/>
+            <Label VerticalOptions="Center"
+            TextColor="{Binding IsChecked,Source={x:Reference ParentCheckBox}, Converter={x:StaticResource BoolToColorConverter}}">
+                <Label.Text>
+                    <Binding Source="{x:Reference ParentCheckBox}"
+                             Path="isChecked">
+                        <Binding.Converter>
+                            <converters:BoolToTextConverter TrueMessage="Tak"
+                                                            FalseMessage="Nie"/>        
+                        </Binding.Converter>
+                    </Binding>
+                </Label.Text>
+            </Label>
+
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
