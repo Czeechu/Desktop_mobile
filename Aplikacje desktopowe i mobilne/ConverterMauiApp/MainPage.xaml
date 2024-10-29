@@ -71,7 +71,8 @@
         <Label Text="Czerwony"/>
         <Slider x:Name="redSlider" 
                 Minimum="0" 
-                Maximum="255"/>
+                Maximum="255"
+                />
 
         <Label Text="Zielony"/>
         <Slider x:Name="greenSlider" 
