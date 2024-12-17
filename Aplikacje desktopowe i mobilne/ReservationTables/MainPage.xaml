@@ -4,12 +4,12 @@
              x:Class="ReservationTables.MainPage"
              Title="Rezerwacja stolików"
              x:Name="thisPage"
+             xmlns:viewModel="clr-namespace:ReservationTables"
              BindingContext="{x:Reference thisPage}">
-    <!--xmlns:viewModel="clr-namespace:ReservationTables.ViewModel"-->
 
-    <!--<ContentPage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModel:ReservationViewModel/>
-    </ContentPage.BindingContext>-->
+    </ContentPage.BindingContext>
 
 
     <StackLayout>
@@ -17,7 +17,7 @@
                HorizontalOptions="Center"
                FontSize="24" 
                Margin="10"/>
-        
+
         <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="10" Padding="10" WidthRequest="400">
             <Button Grid.Column="0"
                     BackgroundColor="Grey"/>
@@ -35,12 +35,12 @@
                     BackgroundColor="Grey"/>
         </Grid>
 
-        
+
 
         <Entry Placeholder="Imie i nazwisko" 
                WidthRequest="200" 
                Margin="20"/>
-        
+
         <TimePicker HorizontalOptions="Center" 
                     Margin="10"/>
 
@@ -51,5 +51,3 @@
     </StackLayout>
 
 </ContentPage>
-
-  <!--imie i nazwisko, data godzina rezerwacji w entry-->
