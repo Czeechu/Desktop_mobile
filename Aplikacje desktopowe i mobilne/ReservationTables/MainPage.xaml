@@ -1,53 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ReservationTables.MainPage"
-             Title="Rezerwacja stolików"
-             x:Name="thisPage"
-             xmlns:viewModel="clr-namespace:ReservationTables"
-             BindingContext="{x:Reference thisPage}">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:QuizApp.ViewModels"
+             x:Class="QuizApp.MainPage">
 
-    <ContentPage.BindingContext>
-        <viewModel:ReservationViewModel/>
-    </ContentPage.BindingContext>
-
-
-    <StackLayout>
-        <Label Text="Zarezerwuj stolik" 
-               HorizontalOptions="Center"
-               FontSize="24" 
-               Margin="10"/>
-
-        <Grid ColumnDefinitions="*, *, *, *, *" ColumnSpacing="10" Padding="10" WidthRequest="400">
-            <Button Grid.Column="0"
-                    BackgroundColor="Grey"/>
-
-            <Button Grid.Column="1"
-                    BackgroundColor="Grey"/>
-
-            <Button Grid.Column="2"
-                   BackgroundColor="Grey"/>
-
-            <Button Grid.Column="3" 
-                    BackgroundColor="Grey"/>
-
-            <Button Grid.Column="4"
-                    BackgroundColor="Grey"/>
-        </Grid>
+    <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:QuizApp"
+             x:Class="QuizApp.App">
+        <Application.Resources>
+            <ResourceDictionary>
+                <local:AnswerIndexToBoolConverter x:Key="AnswerIndexToBoolConverter" />
+            </ResourceDictionary>
+        </Application.Resources>
+    </Application>
 
 
+    <StackLayout Padding="20">
+        <!-- Pytanie -->
+        <Label Text="{Binding QuestionText}" FontSize="24" HorizontalOptions="Center" />
 
-        <Entry Placeholder="Imie i nazwisko" 
-               WidthRequest="200" 
-               Margin="20"/>
+        <!-- Odpowiedzi -->
+        <StackLayout Spacing="10" Orientation="Vertical">
+            <RadioButton GroupName="Answers" Content="{Binding Answers[0]}" 
+                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=0}" />
+            <RadioButton GroupName="Answers" Content="{Binding Answers[1]}" 
+                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=1}" />
+            <RadioButton GroupName="Answers" Content="{Binding Answers[2]}" 
+                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=2}" />
+            <RadioButton GroupName="Answers" Content="{Binding Answers[3]}" 
+                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=3}" />
+        </StackLayout>
 
-        <TimePicker HorizontalOptions="Center" 
-                    Margin="10"/>
+        <!-- Przycisk Sprawdź -->
+        <Button Text="Sprawdź odpowiedź" Command="{Binding CheckAnswerCommand}" />
 
-        <Button Text="Zarezerwuj" 
-                HorizontalOptions="Center" 
-                Margin="10" 
-                BackgroundColor="Green"/>
+        <!-- Przycisk Następne/Poprzednie pytanie -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
+            <Button Text="Poprzednie pytanie" Command="{Binding PreviousQuestionCommand}" />
+            <Button Text="Następne pytanie" Command="{Binding NextQuestionCommand}" />
+        </StackLayout>
+
+        <!-- Przycisk Reset -->
+        <Button Text="Od nowa" Command="{Binding ResetCommand}" HorizontalOptions="Center" />
+
+        <!-- Informacja o poprawności odpowiedzi -->
+        <Label Text="{Binding Feedback}" FontSize="18" TextColor="Green" HorizontalOptions="Center" />
     </StackLayout>
-
 </ContentPage>
