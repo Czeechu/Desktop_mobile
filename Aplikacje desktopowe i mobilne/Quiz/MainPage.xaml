@@ -2,12 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Quiz.Views.MainPage"
-             xmlns:viewmodels="clr-namespace:Quiz.ViewModels">
+             xmlns:viewmodels="clr-namespace:Quiz.ViewModels"
+             xmlns:converters="clr-namespace:Quiz.Converters"
+             >
 
     <ContentPage.BindingContext>
         <viewmodels:QuizViewModel/>
     </ContentPage.BindingContext>
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CurrentAnswerToBoolConverter x:Key="CurrentAnswerToBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout Padding="20">
         <Label Text="Pytania"
                FontSize="30"
@@ -19,21 +25,21 @@
                    HorizontalOptions="Center" />
 
             <StackLayout>
-                <RadioButton GroupName="answers" 
+                <RadioButton
                              Content="{Binding CurrentAnswers[0]}" 
-                             IsChecked="{Binding SelectedAnswer}" />
+                             IsChecked="{Binding SelectedAnswer,Converter={StaticResource CurrentAnswerToBoolConverter},ConverterParameter={Binding CurrentAnswers[0]}}" />
                 
-                <RadioButton GroupName="answers" 
+                <RadioButton
                              Content="{Binding CurrentAnswers[1]}" 
-                             IsChecked="{Binding SelectedAnswer}" />
+                             IsChecked="{Binding SelectedAnswer,Converter={StaticResource CurrentAnswerToBoolConverter},ConverterParameter={Binding CurrentAnswers[1]}}"  />
                 
-                <RadioButton GroupName="answers" 
+                <RadioButton
                              Content="{Binding CurrentAnswers[2]}" 
-                             IsChecked="{Binding SelectedAnswer}" />
+                             IsChecked="{Binding SelectedAnswer,Converter={StaticResource CurrentAnswerToBoolConverter},ConverterParameter={Binding CurrentAnswers[2]}}"  />
                 
-                <RadioButton GroupName="answers" 
+                <RadioButton
                              Content="{Binding CurrentAnswers[3]}" 
-                             IsChecked="{Binding SelectedAnswer}" />
+                             IsChecked="{Binding SelectedAnswer,Converter={StaticResource CurrentAnswerToBoolConverter},ConverterParameter={Binding CurrentAnswers[3]}}"  />
             </StackLayout>
         </StackLayout>
 

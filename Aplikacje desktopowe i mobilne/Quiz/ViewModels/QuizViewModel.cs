@@ -8,18 +8,31 @@ namespace Quiz.ViewModels
     public class QuizViewModel : BindableObject
     {
 
-        public Command CheckAnswerCommand => new Command(CheckAnswer);
+        //public Command CheckAnswerCommand => new Command(CheckAnswer);
         public Command NextQuestionCommand => new Command(NextQuestion);
         public Command PreviousQuestionCommand => new Command(PreviousQuestion);
 
         private int currentQuestionIndex = 0;
-        private string selectedAnswer;
         private string feedback;
+
         private ObservableCollection<Question> questions;
+        private ObservableCollection<Question> Questions
+        {
+            get
+            {
+                return questions;
+            }
+            set
+            {
+                questions = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public QuizViewModel()
         {
-            questions = new ObservableCollection<Question>
+            Questions = new ObservableCollection<Question>
             {
                 new Question
                 {
@@ -51,7 +64,6 @@ namespace Quiz.ViewModels
             };
         }
 
-        public ObservableCollection<Question> Questions => questions;
 
         public string CurrentQuestionText => questions[currentQuestionIndex].Text;
 
@@ -70,6 +82,7 @@ namespace Quiz.ViewModels
             }
         }
 
+        private string selectedAnswer;
         public string SelectedAnswer
         {
             get 
