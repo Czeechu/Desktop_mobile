@@ -5,14 +5,21 @@ using System.Windows.Input;
 
 namespace Quiz.ViewModels
 {
-    public class QuizViewModel : BindableObject
+    internal class QuizViewModel : BindableObject
     {
 
         //public Command CheckAnswerCommand => new Command(CheckAnswer);
         public Command NextQuestionCommand => new Command(NextQuestion);
         public Command PreviousQuestionCommand => new Command(PreviousQuestion);
 
-        private int currentQuestionIndex = 0;
+        private int currentQuestionIndex;
+
+        public int CurrentQuestionIndex
+        {
+            get { return currentQuestionIndex; }
+            set { currentQuestionIndex = value; OnPropertyChanged(); }
+        }
+
         private string feedback;
 
         private ObservableCollection<Question> questions;
@@ -28,6 +35,44 @@ namespace Quiz.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string currQues;
+
+        public string CurrQues
+        {
+            get { return currQues; }
+            set { currQues = value; OnPropertyChanged(); }
+        }
+
+
+        private string currAns1;
+
+        public string CurrAns1
+        {
+            get { return currAns1; }
+            set { currAns1 = value; OnPropertyChanged(); }
+        }
+
+        private string currAns2;
+        public string CurrAns2
+        {
+            get { return currAns2; }
+            set { currAns2 = value; OnPropertyChanged(); }
+        }
+
+        private string currAns3;
+        public string CurrAns3
+        {
+            get { return currAns3; }
+            set { currAns3 = value; OnPropertyChanged(); }
+        }
+
+        private string currAns4;
+        public string CurrAns4
+        {
+            get { return currAns4; }
+            set { currAns4 = value; OnPropertyChanged(); }
+        }
+
 
 
         public QuizViewModel()
@@ -62,8 +107,21 @@ namespace Quiz.ViewModels
                     CorrectAnswer = "=="
                 }
             };
+
+
+            DisplayAnswers();
         }
 
+        void DisplayAnswers()
+        {
+            CurrQues = Questions[CurrentQuestionIndex].Text;
+
+            CurrAns1 = Questions[CurrentQuestionIndex].Answers[0];
+            CurrAns2 = Questions[CurrentQuestionIndex].Answers[1];
+            CurrAns3 = Questions[CurrentQuestionIndex].Answers[2];
+            CurrAns4 = Questions[CurrentQuestionIndex].Answers[3];
+
+        }
 
         public string CurrentQuestionText => questions[currentQuestionIndex].Text;
 
@@ -112,26 +170,14 @@ namespace Quiz.ViewModels
 
         public void NextQuestion()
         {
-            if (currentQuestionIndex < questions.Count - 1)
-            {
-                currentQuestionIndex++;
-                Feedback = string.Empty;
-                SelectedAnswer = null;
-                OnPropertyChanged(nameof(CurrentQuestionText));
-                OnPropertyChanged(nameof(CurrentAnswers));
-            }
+            CurrentQuestionIndex++;
+            DisplayAnswers();
         }
 
         public void PreviousQuestion()
         {
-            if (currentQuestionIndex > 0)
-            {
-                currentQuestionIndex--;
-                Feedback = string.Empty;
-                SelectedAnswer = null;
-                OnPropertyChanged(nameof(CurrentQuestionText));
-                OnPropertyChanged(nameof(CurrentAnswers));
-            }
+            CurrentQuestionIndex--;
+            DisplayAnswers();
         }
 
     }
