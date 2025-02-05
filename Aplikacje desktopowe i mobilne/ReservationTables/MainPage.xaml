@@ -1,50 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModels="clr-namespace:QuizApp.ViewModels"
-             x:Class="QuizApp.MainPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TableReservation.MainPage"
+             xmlns:local="clr-namespace:TableReservation.VievModels">
+    <ContentPage.BindingContext>
+        <local:TableReservationVievModel/>
+    </ContentPage.BindingContext>
 
-    <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:QuizApp"
-             x:Class="QuizApp.App">
-        <Application.Resources>
-            <ResourceDictionary>
-                <local:AnswerIndexToBoolConverter x:Key="AnswerIndexToBoolConverter" />
-            </ResourceDictionary>
-        </Application.Resources>
-    </Application>
+    <StackLayout Orientation="Vertical"
+                 HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="Start">
 
+        <StackLayout Orientation="Horizontal">
+            <Button WidthRequest="100"
+                HeightRequest="100"
+                Background="LightGray"
+                Margin="2"
+                x:Name="t1"
+                Command="{Binding ChooseTableCommand}"
+                CommandParameter="{x:Reference t1}"
+                AutomationId="table1"/>
 
-    <StackLayout Padding="20">
-        <!-- Pytanie -->
-        <Label Text="{Binding QuestionText}" FontSize="24" HorizontalOptions="Center" />
+            <Button WidthRequest="100"
+                HeightRequest="100"
+                Background="LightGray"
+                Margin="2"
+                x:Name="t2"
+                Command="{Binding ChooseTableCommand}"
+                CommandParameter="{x:Reference t2}"
+                AutomationId="table2"/>
 
-        <!-- Odpowiedzi -->
-        <StackLayout Spacing="10" Orientation="Vertical">
-            <RadioButton GroupName="Answers" Content="{Binding Answers[0]}" 
-                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=0}" />
-            <RadioButton GroupName="Answers" Content="{Binding Answers[1]}" 
-                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=1}" />
-            <RadioButton GroupName="Answers" Content="{Binding Answers[2]}" 
-                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=2}" />
-            <RadioButton GroupName="Answers" Content="{Binding Answers[3]}" 
-                         IsChecked="{Binding SelectedAnswerIndex, Converter={StaticResource AnswerIndexToBoolConverter}, ConverterParameter=3}" />
+            <Button WidthRequest="100"
+                HeightRequest="100"
+                Background="LightGray"
+                Margin="2"
+                x:Name="t3"
+                Command="{Binding ChooseTableCommand}"
+                CommandParameter="{x:Reference t3}"
+                AutomationId="table3"/>
+
+            <Button WidthRequest="100"
+                HeightRequest="100"
+                Background="LightGray"
+                Margin="2"
+                x:Name="t4"
+                Command="{Binding ChooseTableCommand}"
+                CommandParameter="{x:Reference t4}"
+                AutomationId="table4"/>
         </StackLayout>
 
-        <!-- Przycisk Sprawdź -->
-        <Button Text="Sprawdź odpowiedź" Command="{Binding CheckAnswerCommand}" />
+        <StackLayout Margin="0, 20, 0 ,0"
+                     HorizontalOptions="CenterAndExpand"
+                     IsVisible="{Binding ReservationLayoutVisible}">
 
-        <!-- Przycisk Następne/Poprzednie pytanie -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
-            <Button Text="Poprzednie pytanie" Command="{Binding PreviousQuestionCommand}" />
-            <Button Text="Następne pytanie" Command="{Binding NextQuestionCommand}" />
+            <Entry Placeholder="Imie rezerwujacego"
+                   Text="{Binding BookerName}" />
+
+            <Label Text="Godzina rezerwacji: "
+                   Margin="0, 15, 0, 0"/>
+
+            <Picker ItemsSource="{Binding Hours}"
+                    WidthRequest="200"
+                    SelectedItem="{Binding SelectedDate}"/>
+
+            <Button Text="Rezerwuj stolik"
+                    Command="{Binding TableReservationComand}"/>
+
+            <Label Text="{Binding Test}"/>
         </StackLayout>
-
-        <!-- Przycisk Reset -->
-        <Button Text="Od nowa" Command="{Binding ResetCommand}" HorizontalOptions="Center" />
-
-        <!-- Informacja o poprawności odpowiedzi -->
-        <Label Text="{Binding Feedback}" FontSize="18" TextColor="Green" HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>

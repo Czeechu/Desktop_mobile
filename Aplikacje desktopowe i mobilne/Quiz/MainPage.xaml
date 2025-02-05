@@ -8,7 +8,7 @@
         <viewmodels:QuizViewModel/>
     </ContentPage.BindingContext>
     
-    <StackLayout Padding="20">
+    <StackLayout Padding="20" BackgroundColor="LightBlue">
         <Label Text="Pytania"
                FontSize="30"
                HorizontalOptions="Center" />
@@ -18,7 +18,7 @@
                    FontSize="20" 
                    HorizontalOptions="Center" />
 
-            <StackLayout>
+            <StackLayout >
                 <RadioButton Content="{Binding CurrAns1}"/>
                 <RadioButton Content="{Binding CurrAns2}"/>
                 <RadioButton Content="{Binding CurrAns3}"/>
@@ -36,8 +36,7 @@
         </StackLayout>
 
         <Label Text="{Binding Feedback}"
-               FontSize="20"
-               TextColor="Red"
+               FontSize="30"
                HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>

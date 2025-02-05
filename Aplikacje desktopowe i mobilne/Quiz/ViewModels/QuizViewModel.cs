@@ -5,10 +5,10 @@ using System.Windows.Input;
 
 namespace Quiz.ViewModels
 {
-    internal class QuizViewModel : BindableObject
+    public class QuizViewModel : BindableObject
     {
 
-        //public Command CheckAnswerCommand => new Command(CheckAnswer);
+        public Command CheckAnswerCommand => new Command(CheckAnswer);
         public Command NextQuestionCommand => new Command(NextQuestion);
         public Command PreviousQuestionCommand => new Command(PreviousQuestion);
 
@@ -43,7 +43,6 @@ namespace Quiz.ViewModels
             set { currQues = value; OnPropertyChanged(); }
         }
 
-
         private string currAns1;
 
         public string CurrAns1
@@ -72,8 +71,6 @@ namespace Quiz.ViewModels
             get { return currAns4; }
             set { currAns4 = value; OnPropertyChanged(); }
         }
-
-
 
         public QuizViewModel()
         {
@@ -108,7 +105,6 @@ namespace Quiz.ViewModels
                 }
             };
 
-
             DisplayAnswers();
         }
 
@@ -120,7 +116,6 @@ namespace Quiz.ViewModels
             CurrAns2 = Questions[CurrentQuestionIndex].Answers[1];
             CurrAns3 = Questions[CurrentQuestionIndex].Answers[2];
             CurrAns4 = Questions[CurrentQuestionIndex].Answers[3];
-
         }
 
         public string CurrentQuestionText => questions[currentQuestionIndex].Text;
@@ -154,8 +149,6 @@ namespace Quiz.ViewModels
             }
         }
 
-        public int TotalQuestions => questions.Count;
-
         public void CheckAnswer()
         {
             if (SelectedAnswer == questions[currentQuestionIndex].CorrectAnswer)
@@ -164,7 +157,7 @@ namespace Quiz.ViewModels
             }
             else
             {
-                Feedback = $"Źle!";
+                Feedback = "Źle!";
             }
         }
 
