@@ -81,12 +81,13 @@
     }    
 }
 
+
 //************************************************
 //nazwa: PobierzLiczbeKostek
 //opis: Funkcja pobiera od użytkownika liczbę kostek do rzutu w zakresie od 3 do 10.
 //parametry: brak
 //zwracany typ i opis: int - liczba kostek wprowadzona przez użytkownika
-//autor: 06
+//autor: Filip
 //************************************************
 
 //************************************************
@@ -95,7 +96,7 @@
 //parametry: 
 //int liczbaKostek - liczba kostek do rzutu
 //zwracany typ i opis: int[] - tablica z wynikami rzutu kostkami
-//autor: 06
+//autor: Filip
 //************************************************
 
 //************************************************
@@ -104,7 +105,7 @@
 //parametry: 
 //int[] wyniki - tablica z wynikami rzutu
 //zwracany typ i opis: brak
-//autor: 06
+//autor: Filip
 //************************************************
 
 //************************************************
@@ -113,7 +114,7 @@
 //parametry: 
 //int[] wyniki - tablica z wynikami rzutu kostkami
 //zwracany typ i opis: int - łączna liczba punktów
-//autor: 06
+//autor: Filip
 //************************************************
 
 //************************************************
@@ -121,5 +122,5 @@
 //opis: Funkcja pyta użytkownika, czy chce zagrać ponownie, i zwraca odpowiedź.
 //parametry: brak
 //zwracany typ i opis: bool - true jeśli użytkownik chce grać ponownie, false w przeciwnym razie
-//autor: 06
+//autor: Filip
 //************************************************

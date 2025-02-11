@@ -1,15 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TableReservation.MainPage"
-             xmlns:local="clr-namespace:TableReservation.VievModels">
+             x:Class="ReservationTables.MainPage"
+             xmlns:local="clr-namespace:ReservationTables.VievModels"
+             Title="Restauracja Ferment">
     <ContentPage.BindingContext>
         <local:TableReservationVievModel/>
     </ContentPage.BindingContext>
+    
 
     <StackLayout Orientation="Vertical"
                  HorizontalOptions="CenterAndExpand"
                  VerticalOptions="Start">
+        <Label Text="Adres: Henryka Sienkiewicza 76, 25-002 Kielce" 
+               FontSize="20" 
+               FontAttributes="Bold" 
+               Margin="2"
+               BackgroundColor="LightGreen"/>
 
         <StackLayout Orientation="Horizontal">
             <Button WidthRequest="100"
