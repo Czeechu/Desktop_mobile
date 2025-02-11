@@ -1,0 +1,15 @@
+﻿1. Tworzymy nowy projekt class library
+
+2. Instalujemy nugety: 
+
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.12" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.12" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.12">
+<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+
+3. Kasuje plik class1.cs
+
+
+4. Ustaiwamy jako startowy class library
+
+5.otiweramy konsole menadżera pakietów
