@@ -13,3 +13,5 @@
 4. Ustaiwamy jako startowy class library
 
 5.otiweramy konsole menadżera pakietów
+
+Scaffold-DbContext "server=localhost;database=people;user=root" Pomelo.EntityFrameworkCore.Mysql -OutputDir Models -Context PeopleDBContext -ContextDir . -Force -DataAnnotations
