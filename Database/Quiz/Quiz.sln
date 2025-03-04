@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizDatabaseClassLibrary", "QuizDatabaseClassLibrary\QuizDatabaseClassLibrary.csproj", "{4DFDDD0D-28EC-40B6-B3A4-87EE1C332E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizDatabaseClassLibrary", "QuizDatabaseClassLibrary\QuizDatabaseClassLibrary.csproj", "{4DFDDD0D-28EC-40B6-B3A4-87EE1C332E27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizMauiApp", "QuizMauiApp\QuizMauiApp.csproj", "{6BB15F0C-42BF-4B3A-9B0F-C5EA718C0001}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4DFDDD0D-28EC-40B6-B3A4-87EE1C332E27} = {4DFDDD0D-28EC-40B6-B3A4-87EE1C332E27}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

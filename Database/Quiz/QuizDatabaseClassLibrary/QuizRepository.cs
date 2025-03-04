@@ -8,6 +8,13 @@ namespace QuizDatabaseClassLibrary
 {
     public class QuizRepository
     {
+        private QuizDBContext dBContext;
 
+        public QuizRepository()
+        {
+            dBContext = new QuizDBContext();
+        }
+
+        
     }
 }

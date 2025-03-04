@@ -1,4 +1,5 @@
-﻿using QuizMauiApp.Extensions;
+﻿using QuizDatabaseClassLibrary;
+using QuizMauiApp.Extensions;
 using QuizMauiApp.Model;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,17 @@ namespace QuizMauiApp.ViewModels
 {
     public class MainPageViewModel : BindableObject
     {
+        private QuizRepository quizRepository = new QuizRepository();
+
+        private ObservableCollection<AnswerOption> answerOptions;
+
         private ObservableCollection<TestQuestion> testQuestions;
 
         public ObservableCollection<TestQuestion> TestQuestions
         {
             get { return testQuestions; }
             set { testQuestions = value; OnPropertyChanged(); }
+
         }
 
         private TestQuestion currentQuestion;

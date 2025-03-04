@@ -27,7 +27,7 @@
         <templateSelector:AnswersTemplateSelector
             x:Key="AnswersTemplateSelector"
             SingleChoiceTemplate="{StaticResource SingleChoiceTemplate}"
-            MultipleChoiceTemplate="{StaticResource MultipleChoiceTemplate}"/>
+            MultipleChoiceTemplate="{StaticResource SingleChoiceTemplate}"/>
     </ContentPage.Resources>
     
     <StackLayout>
