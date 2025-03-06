@@ -1,7 +1,9 @@
 ﻿using QuizDatabaseClassLibrary;
+using QuizDatabaseClassLibrary.Models;
 using QuizMauiApp.Extensions;
 using QuizMauiApp.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,6 +17,13 @@ namespace QuizMauiApp.ViewModels
         private QuizRepository quizRepository = new QuizRepository();
 
         private ObservableCollection<AnswerOption> answerOptions;
+
+        public ObservableCollection<AnswerOption> AnswerOptions
+        {
+            get { return answerOptions; }
+            set { answerOptions = value; }
+        }
+
 
         private ObservableCollection<TestQuestion> testQuestions;
 
@@ -90,111 +99,49 @@ namespace QuizMauiApp.ViewModels
             }
         }
 
-
         public MainPageViewModel()
         {
-            TestQuestions = new ObservableCollection<TestQuestion>()
+            QuizRepository quizRepository = new QuizRepository();
+            LoadQuestions();
+
+        }
+
+        private void LoadQuestions()
+        {
+            List<Question> questions = quizRepository.LoadQuestions();
+            AnswerOptions = new ObservableCollection<AnswerOption>();
+            TestQuestions = new ObservableCollection<TestQuestion>();
+
+            if (questions != null)
             {
-                new TestQuestion()
+                foreach (Question question in questions)
                 {
-                    QuestionText = "Ile to 2+2?",
-                    QuestionType = Enums.QuestionType.SingleChoice,
-                    AnswerOptions = new ObservableCollection<AnswerOption>()
+                    List<Answer> dbAnswers = quizRepository.LoadAnswers(question.Id);
+                    foreach (Answer dbAnswer in dbAnswers)
                     {
-                        new AnswerOption()
+                        AnswerOptions.Add(new AnswerOption()
                         {
-                            OptionText = "1",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "2",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "3",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "4",
-                            IsCorrect = true,
-                            IsSelected = false,
-                        }
+                            OptionText = dbAnswer.Content,
+                            IsCorrect = dbAnswer.IsCorrect,
+                            IsSelected = false
+                        });
                     }
-                },
-                new TestQuestion()
-                {
-                    QuestionText = "Jakie zwierze ma Ala?",
-                    QuestionType = Enums.QuestionType.SingleChoice,
-                    AnswerOptions = new ObservableCollection<AnswerOption>()
+                    TestQuestions.Add(new TestQuestion()
                     {
-                        new AnswerOption()
-                        {
-                            OptionText = "psa",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "kota",
-                            IsCorrect = true,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "lwa",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "mysz",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        }
-                    }
+                        QuestionText = question.Content,
+                        AnswerOptions = AnswerOptions
+                    });
+                    AnswerOptions = [];
                 }
-                ,new TestQuestion()
-                {
-                    QuestionText = "Jakie kolory są na fladze Polski?",
-                    QuestionType = Enums.QuestionType.MultipleChoice,
-                    AnswerOptions = new ObservableCollection<AnswerOption>()
-                    {
-                        new AnswerOption()
-                        {
-                            OptionText = "biały",
-                            IsCorrect = true,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "czarny",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "zielony",
-                            IsCorrect = false,
-                            IsSelected = false,
-                        },
-                        new AnswerOption()
-                        {
-                            OptionText = "czerwony",
-                            IsCorrect = true,
-                            IsSelected = false,
-                        }
-                    }
-                },
-            };
+            }
+            
             CurrentQuestion = TestQuestions.FirstOrDefault();
             TestResultMessage = "";
         }
 
+        private void LoadAnswers()
+        {
+
+        }
     }
 }

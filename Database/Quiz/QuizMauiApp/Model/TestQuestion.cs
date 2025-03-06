@@ -1,5 +1,4 @@
-﻿using QuizMauiApp.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,14 +22,6 @@ namespace QuizMauiApp.Model
         {
 			get { return answerOptions; }
 			set { answerOptions = value; OnPropertyChanged(); }
-		}
-
-		private QuestionType questionType;
-
-		public QuestionType QuestionType
-        {
-			get { return questionType; }
-			set { questionType = value; OnPropertyChanged(); }
 		}
 
 	}

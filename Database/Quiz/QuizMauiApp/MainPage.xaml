@@ -3,39 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizMauiApp.MainPage"
              xmlns:viewModels="clr-namespace:QuizMauiApp.ViewModels"
-             xmlns:models="clr-namespace:QuizMauiApp.Model"
-             xmlns:templateSelector="clr-namespace:QuizMauiApp.TemplateSelector">
+             xmlns:models="clr-namespace:QuizMauiApp.Model">
+
     <ContentPage.BindingContext>
         <viewModels:MainPageViewModel/>
     </ContentPage.BindingContext>
-    <ContentPage.Resources>
-        <DataTemplate x:Key="SingleChoiceTemplate" >
-            <StackLayout Orientation="Horizontal">
-                <RadioButton IsChecked="{Binding IsSelected}" GroupName="AnswerOption"/>
-                <Label Text="{Binding OptionText}"
-                       VerticalOptions="Center"/>
-            </StackLayout>
-        </DataTemplate>
-        <DataTemplate x:Key="MultipleChoiceTemplate" >
-            <StackLayout Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding IsSelected}"/>
-                <Label Text="{Binding OptionText}"
-                       VerticalOptions="Center"/>
-            </StackLayout>
-        </DataTemplate>
 
-        <templateSelector:AnswersTemplateSelector
-            x:Key="AnswersTemplateSelector"
-            SingleChoiceTemplate="{StaticResource SingleChoiceTemplate}"
-            MultipleChoiceTemplate="{StaticResource SingleChoiceTemplate}"/>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="SingleChoiceTemplate">
+            <StackLayout Orientation="Horizontal">
+                <RadioButton IsChecked="{Binding IsSelected}" GroupName="AnswerOption" />
+                <Label Text="{Binding OptionText}" VerticalOptions="Center" />
+            </StackLayout>
+        </DataTemplate>
     </ContentPage.Resources>
-    
+
     <StackLayout>
         <Label Text="Treść pytania:"/>
         <Label Text="{Binding CurrentQuestion.QuestionText}"
                FontSize="20"/>
         <StackLayout BindableLayout.ItemsSource="{Binding CurrentQuestion.AnswerOptions}"
-                     BindableLayout.ItemTemplateSelector="{StaticResource AnswersTemplateSelector}">
+                     BindableLayout.ItemTemplate="{StaticResource SingleChoiceTemplate}">
         </StackLayout>
 
         <Grid ColumnDefinitions="*,*,*,*,*">
@@ -48,11 +36,9 @@
             <Button Text="Sprawdź"
                     Grid.Column="3"
                     Command="{Binding CheckQuestionsCommand}"/>
-            <Button Text="Od nowa"
-                    Grid.Column="4"/>
         </Grid>
         <Label Text="{Binding TestResultMessage}"/>
 
     </StackLayout>
-    
+
 </ContentPage>
