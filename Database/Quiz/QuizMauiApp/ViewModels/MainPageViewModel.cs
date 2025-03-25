@@ -4,7 +4,6 @@ using QuizMauiApp.Extensions;
 using QuizMauiApp.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -89,9 +88,6 @@ namespace QuizMauiApp.ViewModels
                         .Where(tq => tq.AnswerOptions
                                        .Where(ao => ao.IsCorrect)
                                        .All(ao => ao.IsSelected)
-                                     && !tq.AnswerOptions
-                                          .Where(ao => !ao.IsCorrect)
-                                          .Any(ao => ao.IsSelected)
                         ).Count();
                         TestResultMessage = $"Wynik to {countOfcorrect}/{TestQuestions.Count()}";
                     });
@@ -139,9 +135,9 @@ namespace QuizMauiApp.ViewModels
             TestResultMessage = "";
         }
 
-        private void LoadAnswers()
-        {
+        //private void LoadAnswers()
+        //{
 
-        }
+        //}
     }
 }
