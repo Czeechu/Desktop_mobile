@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoListMauiApp.MainPage">
+
+        <StackLayout>
+            <Label Text = "Dodaj nowe zadanie: " Padding="10" Margin="10"/>
+
+            <Entry WidthRequest="500" 
+                   HeightRequest="50" 
+                   Placeholder="Treść zadania"
+                   HorizontalOptions="StartAndExpand"/>
+
+            <Button Text="Dodaj" 
+                    WidthRequest="100" 
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"/>
+            
+        
+    </StackLayout>
+
+</ContentPage>
