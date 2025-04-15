@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ToDoListMauiApp.ViewModels"
-             x:Class="ToDoListMauiApp.MainPage">
-
+             x:Class="ToDoListMauiApp.MainPage"
+             x:Name="MainPageXaml">
 
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
@@ -18,21 +18,26 @@
 
         <Label Text="Aktualne zadania" FontSize="20" HorizontalOptions="Center" />
 
-        <CollectionView ItemsSource="{Binding ActiveTasks}" SelectionMode="Single">
+        <CollectionView ItemsSource="{Binding ActiveTasks}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Horizontal" Spacing="10">
                         <Label Text="{Binding Content}" VerticalOptions="Center" />
 
-                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center" >
-                            <Button Text="Usuń"
-                                    Command="{Binding BindingContext.MarkTaskAsDeletedCommand, Source={x:Reference Name=MainPage}}" 
-                                    CommandParameter="{Binding .}" />
-                            
-                            <Button Text="Wykonane" 
-                                    Command="{Binding BindingContext.SaveChangesCommand, Source={x:Reference Name=MainPage}}" 
-                                    CommandParameter="{Binding .}" />
-                        </HorizontalStackLayout>
+                        <Button Text="Usuń" 
+                                Command="{Binding BindingContext.MarkTaskAsDeletedCommand, Source={x:Reference Name=MainPageXaml}}" 
+                                CommandParameter="{Binding .}" 
+                                VerticalOptions="Center" Margin="5"/>
+
+                        <Image Source="deleted.jpg"/>
+
+                        <Button Text="Wykonane" 
+                                Command="{Binding BindingContext.DoneCommand, Source={x:Reference Name=MainPageXaml}}" 
+                                CommandParameter="{Binding .}" 
+                                VerticalOptions="Center" Margin="5"/>
+
+                        <Image Source="done.png"/>
+
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -49,6 +54,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+        
     </VerticalStackLayout>
 
 </ContentPage>

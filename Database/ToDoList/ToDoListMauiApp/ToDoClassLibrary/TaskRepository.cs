@@ -43,6 +43,7 @@ namespace ToDoClassLibrary
             if (task != null)
             {
                 task.IsDeleted = true;
+                task.IsDone = false;
                 dbContext.SaveChanges();
             }
         }

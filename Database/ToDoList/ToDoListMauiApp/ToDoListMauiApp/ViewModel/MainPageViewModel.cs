@@ -36,51 +36,90 @@ namespace ToDoListMauiApp.ViewModels
             set { deletedTasks = value; OnPropertyChanged(); }
         }
 
-        private Todotask currentTask;
-        public Todotask CurrentTask
+        private ObservableCollection<Todotask> doneTasks;
+        public ObservableCollection<Todotask> DoneTasks
         {
-            get { return currentTask; }
-            set { currentTask = value; OnPropertyChanged(); }
+            get { return doneTasks; }
+            set { doneTasks = value; OnPropertyChanged(); }
         }
 
-        public Command AddTaskCommand;
-        public Command LoadTasksCommand;
-        public Command MarkTaskAsDeletedCommand;
-        public Command SaveChangesCommand;
+
+        private Command addTaskCommand;
+        public Command AddTaskCommand
+        {
+            get
+            {
+                if (addTaskCommand == null)
+                {
+                    addTaskCommand = new Command(() =>
+                    {
+                        if (!string.IsNullOrEmpty(TaskContent))
+                        {
+                            taskRepository.CreateNewTask(TaskContent);
+                            LoadTasks();
+                        }
+                    });
+                }
+                return addTaskCommand;
+            }
+        }
+        private Command loadTasksCommand;
+        public Command LoadTasksCommand
+        {
+            get
+            {
+                if (loadTasksCommand == null)
+                {
+                    loadTasksCommand = new Command(LoadTasks);
+                }
+                return loadTasksCommand;
+            }
+        }
+        private Command markTaskAsDeletedCommand;
+        public Command MarkTaskAsDeletedCommand
+        {
+            get
+            {
+                if (markTaskAsDeletedCommand == null)
+                {
+                    markTaskAsDeletedCommand = new Command <Todotask>((task) =>
+                    {
+                        if (task != null)
+                        {
+                            taskRepository.MarkTaskAsDeleted(task.Id);
+                            LoadTasks();
+                        }
+                    });
+                }
+                return markTaskAsDeletedCommand;
+            }
+        }
+
+        private Command doneCommand;
+        public Command DoneCommand
+        {
+            get
+            {
+                if (doneCommand == null)
+                {
+                    doneCommand = new Command<Todotask>((task) =>
+                    {
+                        if (task != null)
+                        {
+                            taskRepository.SaveChanges(task);
+                            LoadTasks();
+                        }
+                    });
+                }
+                return doneCommand;
+            }
+        }
 
         public MainPageViewModel()
+
         {
             ActiveTasks = new ObservableCollection<Todotask>();
             DeletedTasks = new ObservableCollection<Todotask>();
-
-            AddTaskCommand = new Command(() =>
-            {
-                if (!string.IsNullOrEmpty(TaskContent))
-                {
-                    taskRepository.CreateNewTask(TaskContent);
-                    LoadTasks();
-                }
-            });
-
-            LoadTasksCommand = new Command(LoadTasks);
-
-            MarkTaskAsDeletedCommand = new Command(() =>
-            {
-                if (CurrentTask != null)
-                {
-                    taskRepository.MarkTaskAsDeleted(CurrentTask.Id);
-                    LoadTasks();
-                }
-            });
-
-            SaveChangesCommand = new Command(() =>
-            {
-                if (CurrentTask != null)
-                {
-                    taskRepository.SaveChanges(CurrentTask);
-                    LoadTasks();
-                }
-            });
 
             LoadTasks();
         }
